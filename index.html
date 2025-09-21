@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Feliz Cumpleaños</title>
+<!-- Fuente festiva para el título -->
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<!-- Fuente clara y legible para el nombre -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 <style>
   body {
     display:flex; justify-content:center; align-items:center;
@@ -39,7 +41,7 @@
     text-align:center; border-radius:8px;
     transform:translateY(100%); transition:transform 1s;
     z-index:1; padding:20px;
-    opacity:0; /* Oculto al inicio */
+    opacity:0;
   }
   .sobre.abierto .carta { transform:translateY(0); opacity:1; }
 
@@ -48,8 +50,9 @@
     font-size:22px; color:#e74c3c; margin-bottom:10px;
   }
   .linea2 {
-    font-family:'Great Vibes', cursive;
-    font-size:40px; color:#2c3e50;
+    font-family:'Poppins', sans-serif;
+    font-size:34px; color:#2c3e50; font-weight:600;
+    letter-spacing: 1px;
   }
 
   .confeti {
@@ -123,12 +126,10 @@
 
   // Evento al tocar el sobre
   sobre.onclick = () => {
-    hand.style.display="none"; // quitar manito
+    hand.style.display="none"; 
     sobre.classList.add("abierto");
 
-    // Reproducir música
     musica.play().then(()=>{
-      // Iniciar confeti en bucle mientras suena
       confetiInterval = setInterval(lanzarConfeti, 200);
     }).catch(()=>{
       alert("Toca otra vez para activar el sonido 🎶");
@@ -137,5 +138,3 @@
 </script>
 </body>
 </html>
-
-
