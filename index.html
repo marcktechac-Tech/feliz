@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Feliz Cumpleaños</title>
-<!-- Fuente festiva para el título -->
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-<!-- Fuente cursiva elegante para el nombre -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
   body {
@@ -14,11 +12,6 @@
     background:linear-gradient(135deg,#2c3e50,#4ca1af);
     font-family:sans-serif;
   }
-  .btn-musica {
-    background:#2a5298; color:#fff; border:none; padding:10px 20px;
-    font-size:16px; border-radius:6px; cursor:pointer; margin-bottom:20px;
-  }
-  .btn-musica:hover { background:#1e3c72; }
 
   .sobre {
     position:relative; width:340px; height:240px; cursor:pointer;
@@ -69,12 +62,23 @@
     50% { transform:translateY(5px) scale(0.9); }
     100% { transform:translateY(0) scale(1); }
   }
+
+  /* 👆 Manito animada */
+  .hand {
+    position:absolute;
+    bottom:-60px; right:-40px;
+    font-size:50px;
+    animation: mover 1s infinite alternate;
+    z-index:3;
+    pointer-events:none;
+  }
+  @keyframes mover {
+    from { transform: translateY(0); }
+    to { transform: translateY(-15px); }
+  }
 </style>
 </head>
 <body>
-
-<!-- Botón para desbloquear el audio -->
-<button class="btn-musica" id="activar">🎶 Activar música</button>
 
 <div class="sobre" id="sobre">
   <div class="cuerpo"></div>
@@ -83,9 +87,10 @@
     <div class="linea1" id="linea1"></div>
     <div class="linea2" id="linea2"></div>
   </div>
+  <!-- 👆 Manito que indica tocar -->
+  <div class="hand" id="hand">👆</div>
 </div>
 
-<!-- Audio local -->
 <audio id="musica" loop>
   <source src="cumple.mp3" type="audio/mpeg">
 </audio>
@@ -97,7 +102,7 @@
   const cont2 = document.getElementById("linea2");
   const sobre = document.getElementById("sobre");
   const musica = document.getElementById("musica");
-  const activar = document.getElementById("activar");
+  const hand = document.getElementById("hand");
 
   // Crear letras
   function crearLetras(texto, contenedor){
@@ -111,17 +116,17 @@
   crearLetras(linea1, cont1);
   crearLetras(linea2, cont2);
 
-  // Botón para desbloquear audio
-  activar.onclick = () => {
-    musica.play().then(()=>{
-      activar.style.display="none";
-    }).catch(()=>{
+  // Abrir sobre, animar letras y reproducir música
+  sobre.onclick = () => {
+    // Ocultar manito al tocar
+    hand.style.display = "none";
+
+    // Reproducir música
+    musica.play().catch(()=>{
       alert("Toca otra vez para activar el sonido 🎶");
     });
-  };
 
-  // Abrir sobre y animar letras
-  sobre.onclick = () => {
+    // Animación del sobre
     sobre.classList.toggle("abierto");
     if(sobre.classList.contains("abierto")){
       const spans = document.querySelectorAll(".letra");
@@ -146,5 +151,3 @@
 </script>
 </body>
 </html>
-
-
