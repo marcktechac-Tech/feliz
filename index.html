@@ -19,7 +19,6 @@
     perspective:1000px;
   }
 
-  /* Cuerpo del sobre */
   .cuerpo {
     width:100%; height:100%;
     background:#fff8e7;
@@ -29,7 +28,6 @@
     position:relative; z-index:1;
   }
 
-  /* Flap triangular */
   .flap {
     position:absolute; top:0; left:0; width:100%; height:100%;
     background:linear-gradient(180deg,#fff8e7,#f0e0c0);
@@ -41,7 +39,6 @@
   }
   .sobre.abierto .flap { transform: rotateX(180deg); }
 
-  /* Carta interior */
   .carta {
     position:absolute; inset:15px; background:#fff;
     border:2px solid #d4af37; border-radius:8px;
@@ -50,20 +47,16 @@
     transform:translateY(100%); transition:transform 1s;
     opacity:0;
     box-shadow:0 3px 8px rgba(0,0,0,0.15);
-    z-index:5; /* 👈 ahora queda por encima del sobre */
+    z-index:5;
   }
   .sobre.abierto .carta { transform:translateY(0); opacity:1; }
 
-  .linea1 {
-    font-family:'Pacifico', cursive;
-    font-size:26px; color:#e74c3c; margin-bottom:10px;
-  }
-  .linea2 {
+  .mensaje {
     font-family:'Poppins', sans-serif;
-    font-size:36px; color:#2c3e50; font-weight:600;
+    font-size:28px; color:#2c3e50; font-weight:600;
+    text-align:center;
   }
 
-  /* Sticker festivo */
   .sticker {
     position:absolute; bottom:10px; right:10px;
     background:#ff4757; color:#fff; font-size:14px;
@@ -73,7 +66,6 @@
     z-index:3;
   }
 
-  /* Confeti */
   .confeti {
     position:absolute; width:8px; height:8px; border-radius:50%;
     animation: caer 3s linear infinite;
@@ -83,7 +75,6 @@
     100% { transform: translateY(600px) rotate(360deg); opacity:0; }
   }
 
-  /* Manito */
   .hand {
     position:absolute; bottom:-60px; right:-40px;
     font-size:50px; animation: mover 1s infinite alternate;
@@ -101,14 +92,12 @@
   <div class="cuerpo"></div>
   <div class="flap"></div>
   <div class="carta">
-    <div class="linea1">🎉 FELIZ CUMPLEAÑOS 🎉</div>
-    <div class="linea2">JOSE ANGEL</div>
+    <div class="mensaje" id="mensaje">🎉 FELIZ CUMPLEAÑOS 🎉<br>JOSE ANGEL</div>
   </div>
   <div class="sticker">🎂</div>
   <div class="hand" id="hand">👆</div>
 </div>
 
-<!-- 🎶 Audio de cumpleaños -->
 <audio id="musica" loop>
   <source src="cumple.mp3" type="audio/mpeg">
 </audio>
@@ -117,10 +106,11 @@
   const sobre = document.getElementById("sobre");
   const hand = document.getElementById("hand");
   const musica = document.getElementById("musica");
+  const mensaje = document.getElementById("mensaje");
 
-  // Generar confeti en bucle (3 confetis por ciclo)
+  // Confeti
   function lanzarConfeti(){
-    for(let i=0; i<3; i++){   // 👈 genera 3 confetis cada vez
+    for(let i=0; i<3; i++){   
       const c = document.createElement("div");
       c.className="confeti";
       c.style.left = Math.random()*window.innerWidth+"px";
@@ -142,9 +132,19 @@
     }).catch(()=>{
       alert("Toca otra vez para activar el sonido 🎶");
     });
+
+    // Secuencia de mensajes
+    setTimeout(()=>{
+      mensaje.textContent = "TE DESEAMOS LA FAMILIA MARTÍNEZ GUTIÉRREZ";
+    }, 3000);
+
+    setTimeout(()=>{
+      mensaje.textContent = "QUE DIOS TE DE MUCHA SALUD";
+    }, 6000);
   };
 </script>
 </body>
 </html>
+
 
 
