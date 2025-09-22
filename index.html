@@ -3,15 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Sobre Cumpleaños</title>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 <style>
   body {
     display:flex; justify-content:center; align-items:center;
     height:100vh; margin:0;
     background:linear-gradient(135deg,#fceabb,#f8b500);
     font-family:sans-serif;
-    overflow:hidden;
   }
 
   .sobre {
@@ -22,8 +19,8 @@
   /* Cuerpo del sobre */
   .cuerpo {
     width:100%; height:100%;
-    background:#fff8e7;
-    border:2px solid #d4af37;
+    background:#fff8e7; /* color papel */
+    border:2px solid #d4af37; /* borde dorado */
     border-radius:4px;
     box-shadow:0 6px 15px rgba(0,0,0,0.2);
     position:relative; z-index:1;
@@ -71,16 +68,6 @@
     box-shadow:0 2px 5px rgba(0,0,0,0.2);
   }
 
-  /* Confeti */
-  .confeti {
-    position:absolute; width:8px; height:8px; border-radius:50%;
-    animation: caer 3s linear infinite;
-  }
-  @keyframes caer {
-    0% { transform: translateY(-50px) rotate(0deg); opacity:1; }
-    100% { transform: translateY(600px) rotate(360deg); opacity:0; }
-  }
-
   /* Manito */
   .hand {
     position:absolute; bottom:-60px; right:-40px;
@@ -106,9 +93,8 @@
   <div class="hand" id="hand">👆</div>
 </div>
 
-<!-- 🎶 Audio de cumpleaños -->
 <audio id="musica" loop>
-  <source src="cumple.mp3" type="audio/mpeg">
+  <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -116,30 +102,13 @@
   const hand = document.getElementById("hand");
   const musica = document.getElementById("musica");
 
-  // Generar confeti en bucle
-  function lanzarConfeti(){
-    const c = document.createElement("div");
-    c.className="confeti";
-    c.style.left = Math.random()*window.innerWidth+"px";
-    c.style.background = `hsl(${Math.random()*360},100%,50%)`;
-    c.style.animationDuration = (2+Math.random()*3)+"s";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),4000);
-  }
-
-  let confetiInterval;
-
   sobre.onclick = () => {
     hand.style.display="none";
     sobre.classList.add("abierto");
-
-    musica.play().then(()=>{
-      confetiInterval = setInterval(lanzarConfeti, 200);
-    }).catch(()=>{
-      alert("Toca otra vez para activar el sonido 🎶");
-    });
+    musica.play().catch(()=>alert("Toca otra vez para activar el sonido 🎶"));
   };
 </script>
 </body>
 </html>
+
 
