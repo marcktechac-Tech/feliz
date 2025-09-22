@@ -118,15 +118,17 @@
   const hand = document.getElementById("hand");
   const musica = document.getElementById("musica");
 
-  // Generar confeti en bucle
+  // Generar confeti en bucle (3 confetis por ciclo)
   function lanzarConfeti(){
-    const c = document.createElement("div");
-    c.className="confeti";
-    c.style.left = Math.random()*window.innerWidth+"px";
-    c.style.background = `hsl(${Math.random()*360},100%,50%)`;
-    c.style.animationDuration = (2+Math.random()*3)+"s";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),4000);
+    for(let i=0; i<3; i++){   // 👈 genera 3 confetis cada vez
+      const c = document.createElement("div");
+      c.className="confeti";
+      c.style.left = Math.random()*window.innerWidth+"px";
+      c.style.background = `hsl(${Math.random()*360},100%,50%)`;
+      c.style.animationDuration = (2+Math.random()*3)+"s";
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),4000);
+    }
   }
 
   let confetiInterval;
