@@ -65,7 +65,7 @@
     border-radius:50%;
     border:3px solid #d4af37;
     box-shadow:0 4px 10px rgba(0,0,0,0.2);
-    display:none; /* 👈 por defecto ocultas */
+    display:none;
   }
 
   .sticker {
@@ -77,13 +77,16 @@
     z-index:3;
   }
 
+  /* Confeti */
   .confeti {
-    position:absolute; width:8px; height:8px; border-radius:50%;
-    animation: caer 3s linear infinite;
+    position:fixed; /* 👈 ahora relativo a la pantalla */
+    top:-20px;      /* 👈 siempre desde arriba */
+    animation: caer 3s linear forwards;
+    pointer-events:none;
   }
   @keyframes caer {
-    0% { transform: translateY(-50px) rotate(0deg); opacity:1; }
-    100% { transform: translateY(600px) rotate(360deg); opacity:0; }
+    0% { transform: translateY(0) rotate(0deg); opacity:1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity:0; }
   }
 
   .hand {
@@ -126,14 +129,30 @@
   const foto2 = document.getElementById("foto2");
   const foto3 = document.getElementById("foto3");
 
-  // Confeti
+  // Confeti variado
   function lanzarConfeti(){
-    for(let i=0; i<3; i++){   
+    for(let i=0; i<6; i++){   // más confetis por ciclo
       const c = document.createElement("div");
       c.className="confeti";
+
+      // Posición inicial aleatoria en el ancho de la pantalla
       c.style.left = Math.random()*window.innerWidth+"px";
+
+      // Tamaño aleatorio
+      const size = 6 + Math.random()*14;
+      c.style.width = size+"px";
+      c.style.height = size+"px";
+
+      // Color aleatorio
       c.style.background = `hsl(${Math.random()*360},100%,50%)`;
+
+      // Forma aleatoria
+      const formas = ["50%", "0%", "30% 70% 70% 30%", "50% 20% 50% 20%"];
+      c.style.borderRadius = formas[Math.floor(Math.random()*formas.length)];
+
+      // Duración aleatoria
       c.style.animationDuration = (2+Math.random()*3)+"s";
+
       document.body.appendChild(c);
       setTimeout(()=>c.remove(),4000);
     }
@@ -159,7 +178,7 @@
 
     // A los 3 segundos → segundo mensaje + foto2
     setTimeout(()=>{
-      mensaje.textContent = "TE DESEAMOS TODOS";
+      mensaje.textContent = "TE DESEAMOS LA FAMILIA MARTÍNEZ GUTIÉRREZ";
       foto1.style.display = "none";
       foto2.style.display = "block";
       foto3.style.display = "none";
@@ -176,8 +195,6 @@
 </script>
 </body>
 </html>
-
-
 
 
 
