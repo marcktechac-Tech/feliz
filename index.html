@@ -53,7 +53,7 @@
 
   .mensaje {
     font-family:'Poppins', sans-serif;
-    font-size:24px; color:#2c3e50; font-weight:600;
+    font-size:22px; color:#2c3e50; font-weight:600;
     text-align:center;
     margin-bottom:15px;
   }
@@ -65,6 +65,7 @@
     border-radius:50%;
     border:3px solid #d4af37;
     box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    display:none; /* 👈 por defecto ocultas */
   }
 
   .sticker {
@@ -103,8 +104,10 @@
   <div class="flap"></div>
   <div class="carta">
     <div class="mensaje" id="mensaje">🎉 FELIZ CUMPLEAÑOS 🎉<br>JOSE ANGEL</div>
-    <!-- 👇 Foto del cumpleañero -->
-    <img src="jose.jpeg" alt="Cumpleañero" class="foto" id="foto">
+    <!-- 👇 Fotos del cumpleañero -->
+    <img src="jose.jpeg" alt="Cumpleañero" class="foto" id="foto1">
+    <img src="jose2.jpeg" alt="Cumpleañero" class="foto" id="foto2">
+    <img src="jose3.jpeg" alt="Cumpleañero" class="foto" id="foto3">
   </div>
   <div class="sticker">🎂</div>
   <div class="hand" id="hand">👆</div>
@@ -119,7 +122,9 @@
   const hand = document.getElementById("hand");
   const musica = document.getElementById("musica");
   const mensaje = document.getElementById("mensaje");
-  const foto = document.getElementById("foto");
+  const foto1 = document.getElementById("foto1");
+  const foto2 = document.getElementById("foto2");
+  const foto3 = document.getElementById("foto3");
 
   // Confeti
   function lanzarConfeti(){
@@ -146,20 +151,31 @@
       alert("Toca otra vez para activar el sonido 🎶");
     });
 
-    // Secuencia de mensajes
+    // Mostrar primer mensaje + foto1
+    mensaje.innerHTML = "🎉 FELIZ CUMPLEAÑOS 🎉<br>JOSE ANGEL";
+    foto1.style.display = "block";
+    foto2.style.display = "none";
+    foto3.style.display = "none";
+
+    // A los 3 segundos → segundo mensaje + foto2
     setTimeout(()=>{
       mensaje.textContent = "TE DESEAMOS LA FAMILIA MARTÍNEZ GUTIÉRREZ";
-      foto.style.display = "none"; // 👈 ocultamos la foto en este paso
-    }, 5000);
+      foto1.style.display = "none";
+      foto2.style.display = "block";
+      foto3.style.display = "none";
+    }, 3000);
 
+    // A los 6 segundos → tercer mensaje + foto3
     setTimeout(()=>{
       mensaje.textContent = "QUE DIOS TE DE MUCHA SALUD";
-    }, 8000);
+      foto1.style.display = "none";
+      foto2.style.display = "none";
+      foto3.style.display = "block";
+    }, 6000);
   };
 </script>
 </body>
 </html>
-
 
 
 
