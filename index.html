@@ -1,31 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Sobre Cumpleaños</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<script>
+  document.getElementById("sobre").onclick = () => {
+    alert("¡Sobre clickeado!");
+  };
+</script>
 
-<div class="sobre" id="sobre">
-  <div class="cuerpo"></div>
-  <div class="flap"></div>
-  <div class="carta">
-    <div class="mensaje" id="mensaje">🎉 FELIZ CUMPLEAÑOS 🎉<br><span>JOSE ANGEL</span></div>
-    <img src="jose.jpeg" alt="Cumpleañero" class="foto" id="foto1">
-    <img src="jose2.jpeg" alt="Cumpleañero" class="foto" id="foto2">
-    <img src="jose3.jpeg" alt="Cumpleañero" class="foto" id="foto3">
-  </div>
-  <div class="sticker">🎂</div>
-  <div class="hand" id="hand">👆</div>
-</div>
-
-<audio id="musica" loop>
-  <source src="cumple.mp3" type="audio/mpeg">
-</audio>
-
-<script src="script.js" defer></script>
-</body>
-</html>
