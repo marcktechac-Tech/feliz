@@ -32,6 +32,18 @@ function lanzarConfeti() {
   }
 }
 
+function cambiarMensaje(texto, fotoMostrar) {
+  mensaje.style.opacity = 0;
+  setTimeout(() => {
+    mensaje.innerHTML = texto;
+    foto1.style.display = "none";
+    foto2.style.display = "none";
+    foto3.style.display = "none";
+    fotoMostrar.style.display = "block";
+    mensaje.style.opacity = 1;
+  }, 500);
+}
+
 let confetiInterval;
 
 sobre.onclick = () => {
@@ -44,22 +56,14 @@ sobre.onclick = () => {
     alert("Toca otra vez para activar el sonido 🎶");
   });
 
-  mensaje.innerHTML = "🎉 FELIZ CUMPLEAÑOS 🎉<br><span>JOSE ANGEL</span>";
-  foto1.style.display = "block";
-  foto2.style.display = "none";
-  foto3.style.display = "none";
+  cambiarMensaje("🎉 FELIZ CUMPLEAÑOS 🎉<br><span>JOSE ANGEL</span>", foto1);
 
   setTimeout(() => {
-    mensaje.textContent = "TE DESEAMOS TODOS";
-    foto1.style.display = "none";
-    foto2.style.display = "block";
-    foto3.style.display = "none";
+    cambiarMensaje("TE DESEAMOS TODOS", foto2);
   }, 3000);
 
   setTimeout(() => {
-    mensaje.textContent = "QUE DIOS TE DE MUCHA SALUD";
-    foto1.style.display = "none";
-    foto2.style.display = "none";
-    foto3.style.display = "block";
+    cambiarMensaje("QUE DIOS TE DE MUCHA SALUD", foto3);
   }, 6000);
 };
+
