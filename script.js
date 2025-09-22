@@ -39,10 +39,19 @@ function cambiarMensaje(texto, fotoMostrar) {
     foto1.style.display = "none";
     foto2.style.display = "none";
     foto3.style.display = "none";
+
     fotoMostrar.style.display = "block";
+    fotoMostrar.classList.add("zoom");
+
     mensaje.style.opacity = 1;
+
+    // Quitar el zoom después de la animación
+    setTimeout(() => {
+      fotoMostrar.classList.remove("zoom");
+    }, 2500);
   }, 500);
 }
+
 
 let confetiInterval;
 
@@ -66,4 +75,5 @@ sobre.onclick = () => {
     cambiarMensaje("QUE DIOS TE DE MUCHA SALUD", foto3);
   }, 6000);
 };
+
 
