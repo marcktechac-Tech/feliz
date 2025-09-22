@@ -1,0 +1,170 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #fceabb, #f8b500);
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+.sobre {
+  position: relative;
+  width: 380px;
+  height: 260px;
+  cursor: pointer;
+  perspective: 1000px;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: aparecer 1s ease-out forwards;
+}
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.cuerpo {
+  width: 100%;
+  height: 100%;
+  background: #fff8e7;
+  border: 2px solid #d4af37;
+  border-radius: 4px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+.sobre:hover .cuerpo {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02);
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #fff8e7, #f0e0c0);
+  clip-path: polygon(0 0, 100% 0, 50% 50%);
+  transform-origin: top;
+  transition: transform 1s;
+  z-index: 2;
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.2);
+}
+.sobre.abierto .flap {
+  transform: rotateX(180deg);
+}
+
+.carta {
+  position: absolute;
+  inset: 15px;
+  background: #fff;
+  border: 2px solid #d4af37;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  transform: translateY(100%);
+  transition: transform 1s;
+  opacity: 0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  z-index: 5;
+}
+.sobre.abierto .carta {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mensaje {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  color: #2c3e50;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.mensaje span {
+  font-family: 'Pacifico', cursive;
+  font-size: 26px;
+  color: #e67e22;
+}
+
+.foto {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #d4af37;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+.sticker {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #ff4757;
+  color: #fff;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+
+.confeti {
+  position: fixed;
+  top: -20px;
+  animation: caer 3s linear forwards;
+  pointer-events: none;
+}
+@keyframes caer {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.hand {
+  position: absolute;
+  bottom: -60px;
+  right: -40px;
+  font-size: 50px;
+  animation: mover 1s infinite alternate;
+  z-index: 4;
+  pointer-events: none;
+}
+@keyframes mover {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-15px);
+  }
+}
+
+@media (max-width: 400px) {
+  .sobre {
+    width: 90%;
+    height: auto;
+  }
+  .foto {
+    width: 120px;
+    height: 120px;
+  }
+  .mensaje {
+    font-size: 18px;
+  }
+}
