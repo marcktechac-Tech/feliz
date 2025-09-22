@@ -53,8 +53,18 @@
 
   .mensaje {
     font-family:'Poppins', sans-serif;
-    font-size:28px; color:#2c3e50; font-weight:600;
+    font-size:24px; color:#2c3e50; font-weight:600;
     text-align:center;
+    margin-bottom:15px;
+  }
+
+  .foto {
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid #d4af37;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
   }
 
   .sticker {
@@ -93,6 +103,8 @@
   <div class="flap"></div>
   <div class="carta">
     <div class="mensaje" id="mensaje">🎉 FELIZ CUMPLEAÑOS 🎉<br>JOSE ANGEL</div>
+    <!-- 👇 Foto del cumpleañero -->
+    <img src="jose.jpeg" alt="Cumpleañero" class="foto" id="foto">
   </div>
   <div class="sticker">🎂</div>
   <div class="hand" id="hand">👆</div>
@@ -107,6 +119,7 @@
   const hand = document.getElementById("hand");
   const musica = document.getElementById("musica");
   const mensaje = document.getElementById("mensaje");
+  const foto = document.getElementById("foto");
 
   // Confeti
   function lanzarConfeti(){
@@ -136,6 +149,7 @@
     // Secuencia de mensajes
     setTimeout(()=>{
       mensaje.textContent = "TE DESEAMOS LA FAMILIA MARTÍNEZ GUTIÉRREZ";
+      foto.style.display = "none"; // 👈 ocultamos la foto en este paso
     }, 3000);
 
     setTimeout(()=>{
